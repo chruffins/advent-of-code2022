@@ -79,9 +79,9 @@ int main(int argc, char **argv) {
         fp = fopen(INPUT_FILE, "r");
     }
 
-    get_three_highest_calories(fp);
+    get_three_highest_calories(fp); // part 2
     fseek(fp, 0, SEEK_SET);
-    highest_calories = get_highest_calories(fp);
+    highest_calories = get_highest_calories(fp); // part 1
 
     if (fp != NULL) {
         fclose(fp);

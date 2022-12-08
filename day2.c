@@ -3,14 +3,14 @@
 
 #define DAY2_FILE "day2.txt"
 
-static int old_game_matrix[3][3] = {
+static int old_game_matrix[3][3] = { // used in part 1
     //r p  s (you choose)
     {4, 8, 3}, // r (they choose)
     {1, 5, 9}, // p
     {7, 2, 6}  // s
 };
 
-static int new_game_matrix[3][3] = {
+static int new_game_matrix[3][3] = { // used in part 2
     //l   d    w (you choose)
     {0+3, 3+1, 6+2,}, // r (they choose)
     {0+1, 3+2, 6+3,}, // p
