@@ -20,6 +20,14 @@ bool elf_range_contains(elf_range a, elf_range b) {
     }
 }
 
+bool elf_range_overlaps(elf_range a, elf_range b) {
+    if (a.low <= b.low) {
+        return a.low <= b.low && b.low <= a.high;
+    } else {
+        return b.low <= a.low && a.low <= b.high;
+    }
+}
+
 void get_pair_from_line(char *line, elf_range *a, elf_range *b) {
     int alow, blow, ahigh, bhigh;
 
@@ -114,14 +122,40 @@ void part1() {
     }
 
     fclose(fp);
-    printf("count of pairs with containments: %d", contained_counter);
+    printf("count of pairs with containments: %d\n", contained_counter);
 }
+
+void part2() {
+    elf_range a;
+    elf_range b;
+    char buffer[32];
+    memset(buffer, 0, 32);
+
+    int overlap_counter = 0;
+
+    FILE *fp;
     
+    fp = fopen("day4.txt", "r");
+
+    while (!feof(fp)) {
+        fgets(buffer, 32, fp);
+
+        get_pair_from_line(buffer, &a, &b);
+
+        if (elf_range_overlaps(a, b)) {
+            overlap_counter += 1;
+        }
+    }
+
+    fclose(fp);
+    printf("count of pairs with overlaps: %d\n", overlap_counter);
+}
 
 int main() {
     //get_pair_from_line("71-87,70-88\n", NULL, NULL);
 
     part1();
+    part2();
 
     return 0;
 }
